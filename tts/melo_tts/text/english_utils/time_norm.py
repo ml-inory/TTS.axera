@@ -2,11 +2,6 @@ import re
 import time
 from num2words import num2words
 
-# 测试导入时间
-start = time.time()
-from num2words import num2words  # 实际导入时间约0.01-0.05s
-print(f"import num2words took {time.time() - start:.3f}s")
-
 _time_re = re.compile(
     r"""\b
     ((0?[0-9])|(1[0-1])|(1[2-9])|(2[0-3]))  # hours
