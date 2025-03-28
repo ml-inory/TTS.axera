@@ -6,37 +6,7 @@ import uuid
 import asyncio
 from typing import Dict
 from contextlib import asynccontextmanager
-
-# 假设的TTS工厂类
-class TTSFactory:
-    @staticmethod
-    def get_tts_engine(engine_name: str, language: str, device: str):
-        # 这里应该是你的实际TTS引擎实现
-        class TTSEngine:
-            def __init__(self, language: str, device: str):
-                print(f"Initializing TTS Engine - Language: {language}, Device: {device}")
-                # 模拟耗时的初始化过程
-                import time
-                time.sleep(2)
-                self.language = language
-                self.device = device
-                print("TTS Engine initialized")
-            
-            def generate_audio(self, text: str) -> str:
-                audio_dir = "temp_audio"
-                os.makedirs(audio_dir, exist_ok=True)
-                filename = f"{uuid.uuid4().hex}.wav"
-                filepath = os.path.join(audio_dir, filename)
-                
-                print(f"Generating audio for: {text}")
-                
-                # 模拟生成文件
-                with open(filepath, "wb") as f:
-                    f.write(b"fake_audio_data")  # 替换为实际音频数据
-                
-                return filepath
-        
-        return TTSEngine(language, device)
+from tts.tts_factory import TTSFactory
 
 # 全局TTS引擎实例
 tts_engine = None
