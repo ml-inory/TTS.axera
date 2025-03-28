@@ -6,7 +6,7 @@ class TTSFactory:
     @staticmethod
     def get_tts_engine(engine_type, **kwargs) -> Type[TTSInterface]:
         if engine_type == "melo_tts":
-            from .melo_tts import TTSEngine as MeloTTSEngine
+            from .MeloTTSEngine import TTSEngine as MeloTTSEngine
 
             return MeloTTSEngine(
                 language=kwargs.get("language"),
