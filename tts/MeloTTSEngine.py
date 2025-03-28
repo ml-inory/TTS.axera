@@ -137,17 +137,14 @@ class TTSEngine(TTSInterface):
             os.system(f"cp -rf {model_path}/nltk_data ~/")
 
         # load models
-        if enc_model is None:
-            if "ZH" in self.language:
-                enc_model = "encoder-zh.onnx"
-            else:
-                enc_model = f"encoder-{self.language.lower()}.onnx"
-            assert os.path.exists(enc_model), f"Encoder model ({enc_model}) not exist!"
-        if dec_model is None:
-            if "ZH" in self.language:
-                dec_model = "decoder-zh.axmodel"
-            else:
-                dec_model = f"decoder-{self.language.lower()}.axmodel"
+        if "ZH" in self.language:
+            enc_model = "encoder-zh.onnx"
+        else:
+            enc_model = f"encoder-{self.language.lower()}.onnx"
+        if "ZH" in self.language:
+            dec_model = "decoder-zh.axmodel"
+        else:
+            dec_model = f"decoder-{self.language.lower()}.axmodel"
 
         self.symbol_to_id = {s: i for i, s in enumerate(LANG_TO_SYMBOL_MAP[self.language])}
 
