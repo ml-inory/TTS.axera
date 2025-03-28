@@ -12,7 +12,7 @@ from loguru import logger
 import time
 
 from .tts_interface import TTSInterface
-from .download_utils import get_model
+from .download_utils import download_model
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_dir)
@@ -130,7 +130,7 @@ class TTSEngine(TTSInterface):
 
     def load_model(self):
         # download model if needed
-        model_path = get_model("MeloTTS")
+        model_path = download_model("MeloTTS")
 
         # copy nltk_data to home
         if not os.path.exists("~/nltk_data"):
