@@ -16,7 +16,7 @@ async def lifespan(app: FastAPI):
     # 启动时初始化TTS引擎
     global tts_engine
     print("Initializing TTS engine on startup...")
-    tts_engine = TTSFactory.get_tts_engine("melo_tts", "ZH", "AX650")
+    tts_engine = TTSFactory.get_tts_engine("melo_tts", language="ZH", device="AX650")
     yield
     # 关闭时清理资源
     print("Shutting down TTS service...")
