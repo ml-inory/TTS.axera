@@ -2,41 +2,22 @@ import os
 import re
 import time
 
-start = time.time()
 import cn2an
-print(f"import cn2an take {time.time() - start}s")
-
-start = time.time()
 from pypinyin import lazy_pinyin, Style
-print(f"import pypinyin take {time.time() - start}s")
-
 # from text.symbols import punctuation
-start = time.time()
 from .symbols import language_tone_start_map
-print(f"import symbols take {time.time() - start}s")
-
-start = time.time()
 from .tone_sandhi import ToneSandhi
-print(f"import tone_sandhi take {time.time() - start}s")
-
-start = time.time()
 from .english import g2p as g2p_en
-print(f"import english take {time.time() - start}s")
-
-start = time.time()
 # from transformers import AutoTokenizer
 from .fast_tokenizer import FastTokenizer
-print(f"import AutoTokenizer take {time.time() - start}s")
 
 punctuation = ["!", "?", "…", ",", ".", "'", "-"]
 current_file_path = os.path.dirname(__file__)
 
-start = time.time()
 pinyin_to_symbol_map = {
     line.split("\t")[0]: line.strip().split("\t")[1]
     for line in open(os.path.join(current_file_path, "opencpop-strict.txt")).readlines()
 }
-print(f"pinyin_to_symbol_map take {time.time() - start}s")
 
 
 
@@ -73,9 +54,7 @@ rep_map = {
     "」": "'",
 }
 
-start = time.time()
 tone_modifier = ToneSandhi()
-print(f"tone_modifier take {time.time() - start}s")
 
 def replace_punctuation(text):
     text = text.replace("嗯", "恩").replace("呣", "母")
@@ -117,11 +96,9 @@ def _get_initials_finals(word):
         finals.append(v)
     return initials, finals
 
-start = time.time()
 model_id = 'bert-base-multilingual-uncased'
 model_cache_path = os.path.join(current_file_path, model_id)
 tokenizer = FastTokenizer(f"{model_cache_path}/tokenizer.json")
-print(f"Load tokenizer take {time.time() - start}s")
 # if not os.path.exists(model_cache_path):
 #     print(f"{model_id} not exist, will download...")
 #     tokenizer = AutoTokenizer.from_pretrained(model_id,
@@ -242,9 +219,7 @@ def get_bert_feature(text, word2ph, device):
     from . import chinese_bert
     return chinese_bert.get_bert_feature(text, word2ph, model_id='bert-base-multilingual-uncased', device=device)
 
-start = time.time()
 from .chinese import _g2p as _chinese_g2p
-print(f"import chinese g2p take {time.time() - start}s")
 
 def _g2p_v2(segments):
     spliter = '#$&^!@'

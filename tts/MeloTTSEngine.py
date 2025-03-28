@@ -128,6 +128,9 @@ class TTSEngine(TTSInterface):
 
         self.load_model()
 
+        # preload language module
+        clean_text(" ", self.language)
+
     def load_model(self):
         # download model if needed
         model_path = download_model("MeloTTS")

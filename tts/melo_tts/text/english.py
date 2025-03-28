@@ -3,25 +3,19 @@ import re
 import time
 import pickle
 
-start = time.time()
 # from g2p_en import G2p
 from phonemizer import phonemize
 # phones = phonemize("hello", language='en-us')
-print(f"import g2p_en take {time.time() - start}s")
 
 from . import symbols
 
-start = time.time()
 from .english_utils.abbreviations import expand_abbreviations
 from .english_utils.time_norm import expand_time_english
 from .english_utils.number_norm import normalize_numbers
 # from .japanese import distribute_phone
-print(f"import english_utils take {time.time() - start}s")
 
-start = time.time()
 # from transformers import AutoTokenizer
 from .fast_tokenizer import FastTokenizer
-print(f"import AutoTokenizer take {time.time() - start}s")
 
 current_file_path = os.path.dirname(__file__)
 CMU_DICT_PATH = os.path.join(current_file_path, "cmudict.rep")
@@ -166,10 +160,7 @@ def get_dict():
     return g2p_dict
 
 
-start = time.time()
 eng_dict = get_dict()
-print(f"eng_dict take {time.time() - start}s")
-
 
 def refine_ph(phn):
     tone = 0

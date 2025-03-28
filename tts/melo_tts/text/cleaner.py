@@ -1,7 +1,4 @@
-import time
 from . import cleaned_text_to_sequence
-import copy
-
 # language_module_map = {"ZH": chinese, 
 #                        'ZH_MIX_EN': chinese_mix, 
 #                        "EN": english, 
@@ -20,7 +17,6 @@ import copy
 #     return norm_text, phones, tones, word2ph
 
 def clean_text(text, language):
-    start = time.time()
     if language == "ZH":
         from . import chinese as language_module
     elif language == "ZH_MIX_EN":
@@ -37,7 +33,6 @@ def clean_text(text, language):
         from . import spanish as language_module
     else:
         assert False, f"Unsupported lanuguage: {language}"
-    print(f"Load language module take {1000 * (time.time() - start)}ms")
 
     norm_text = language_module.text_normalize(text)
     phones, tones, word2ph = language_module.g2p(norm_text)
