@@ -217,7 +217,7 @@ class TTSEngine(TTSInterface):
                     zp_slice = np.concatenate((zp_slice, np.zeros((*zp_slice.shape[:-1], self.dec_len - zp_slice.shape[-1]), dtype=np.float32)), axis=-1)
 
                 start = time.time()
-                audio = self.decdoer.run(None, input_feed={"z_p": zp_slice,
+                audio = self.decoder.run(None, input_feed={"z_p": zp_slice,
                                     "g": self.speaker
                                     })[0].flatten()
                 
