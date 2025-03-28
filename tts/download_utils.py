@@ -24,6 +24,8 @@ def download_model(model_name: str) -> str:
     model_path = os.path.join(CACHE_PATH, model_name)
     if not os.path.exists(model_path):
         logger.info(f"Downloading {model_name}...")
-        snapshot_download(repo_id=f"{REPO_ROOT}/{model_name}", cache_dir=CACHE_PATH)
+        snapshot_download(repo_id=f"{REPO_ROOT}/{model_name}", 
+                          cache_dir=CACHE_PATH, 
+                          local_dir=os.path.join(CACHE_PATH, model_name))
     
     return model_path
