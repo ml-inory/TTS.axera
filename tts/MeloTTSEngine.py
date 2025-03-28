@@ -189,7 +189,7 @@ class TTSEngine(TTSInterface):
             start = time.time()
             # Run encoder
             z_p, pronoun_lens, audio_len = self.encoder.run(None, input_feed={
-                                        'phone': phones, 'g': g,
+                                        'phone': phones, 'g': self.speaker,
                                         'tone': tones, 'language': lang_ids, 
                                         'noise_scale': np.array([0], dtype=np.float32),
                                         'length_scale': np.array([1.0 / speed], dtype=np.float32),
