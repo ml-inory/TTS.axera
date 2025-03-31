@@ -2,8 +2,6 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 import os
-import uuid
-import asyncio
 from typing import Dict
 from contextlib import asynccontextmanager
 from tts.tts_factory import TTSFactory
